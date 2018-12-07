@@ -1,12 +1,8 @@
 # HDR2VP9
 
-I learned about some vp9 guidance for HDR encoding from Google here:
+I learned about some vp9 guidance for HDR encoding from [a wonderful document written by some Google engineers](https://developers.google.com/media/vp9/hdr-encoding/).
 
-https://developers.google.com/media/vp9/hdr-encoding/
-
-Google has a well maintained build script compile ffmpeg optimized for 10-bit/vp9 support here:
-
-https://github.com/id3as/ffmpeg-libvpx-HDR-static
+Google has a [well maintained build script to compile ffmpeg optimized for 10-bit/vp9 support](https://github.com/id3as/ffmpeg-libvpx-HDR-static)
 
 There is where I produced this 'ffmpeg' binary.  It was built on 12/5/2018 and I'm mostly putting it here to help a friend.
 
@@ -14,16 +10,20 @@ This repo also contains a batch script which simply executes a bash shell script
 
 ## Requirements and Installation
 
-This ffmpeg version was built inside an Ubuntu environment installed by "Windows Service for Linux" on Windows 10.  You will need to install it to get the linux environment to launch ffmpeg.  This ffmpeg binary does run in an msdos/powershell native shell, however it exits without error (even with DEBUG 56) on the second pass for reasons unclear to me.  The official windows builds of ffmpeg don't seem to be built correctly with VP9.
-
-https://docs.microsoft.com/en-us/windows/wsl/install-win10
+This ffmpeg version was built inside an Ubuntu environment installed by ["Windows Subsystem for Linux" on Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10).  You will need to install it to get the linux environment to launch ffmpeg.  This ffmpeg binary does run in an msdos/powershell native shell, however it exits without error (even with DEBUG 56) on the second pass for reasons unclear to me.  The official windows builds of ffmpeg don't seem to be built correctly with VP9.
 
 ## How To Run
 
 1. Make a new project directory
-2. Copy the contents of this repo into it
+2. Copy the contents of [this repo](https://github.com/igarrison/HDR2VP9/archive/master.zip) into it.
 3. Copy your mov/DNxHR HQX HDR master file into the project directory and rename it to HDR_master.mov
 4. Double click on runme.bat
+
+## Extras
+
+Download [YouTube's Matroska Colour Metadata Ingestion Utility](https://github.com/YouTubeHDR/hdr_metadata).
+
+I recommend grabbing [Wesley Knapp's HDR_MetaJECTOR batch file](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) to simplify launching the mkvmerge incantation to inject HDR metadata or attach a SDR to SDR LUT file.  You can simply run mkvmerge by hand but HDR_MetaJECTOR is easiest..
 
 ## Extra Links
 
@@ -33,4 +33,12 @@ http://www.wesleyknapp.com/blog/hdr
 
 https://www.mysterybox.us/blog/2016/10/27/hdr-video-part-5-grading-mastering-and-delivering-hdr
 
+https://www.mysterybox.us/blog/2016/11/7/how-to-upload-hdr-video-to-youtube-with-a-lut
+
 http://vanhurkman.com/wordpress/?p=3548
+
+https://support.google.com/youtube/answer/7126552?hl=en
+
+https://support.google.com/youtube/answer/1722171?hl=en
+
+

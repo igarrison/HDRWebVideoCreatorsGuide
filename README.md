@@ -1,8 +1,8 @@
-# HDR YouTube Creator Guide
+# HDR Video Creator Guide
 
 <!-- TOC depthFrom:1 depthTo:8 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [HDR YouTube Creator Guide](#hdr-youtube-creator-guide)
+- [HDR Video Creator Guide](#hdr-video-creator-guide)
 	- [Introduction and Call For Quality](#introduction-and-call-for-quality)
 	- [Online Video Platform HDR Requirements](#online-video-platform-hdr-requirements)
 		- [YouTube](#youtube)
@@ -35,7 +35,7 @@ When publishing HDR videos to YouTube I think us content creators should make th
 
 ### YouTube
 
-**It is my intent to attempt to upload my 4k 10-bit HDR MOV/DNxHR HQX masters to YouTube right out of Resolve Studio whenever possible** so long as the size and duration of the video fall within a range is acceptable (roughly less than 12GB).  I also like the process of exporting a high quality master video and then transcoding lower resolution and different resolutions and codec encodings of a video for web delivery from there.  I'll be fine uploading DNxHR HDR masters to YouTube provided they are less than 15 minutes long.  With these 4K DNxHR HDR masters eating a fixed 104Mbps for my videos (explained below) you can end up in situations where if you need to record more than 35 minutes worth of footage you might even exceed YouTube's 128GB file upload limit!  So we need a solution on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K.  We need to workaround Resolve Studio not having a web deliverable codec with HDR metadata support.  This likely means either h265 or VP9.
+**It is my intent to attempt to upload my 4k 10-bit HDR MOV/DNxHR HQX masters to YouTube right out of Resolve Studio whenever possible** so long as the size and duration of the video fall within a range is acceptable (roughly less than 12GB).  I also like the process of exporting a high quality master video and then transcoding lower resolution and different resolutions and codec encodings of a video for web delivery from there.  I'll be fine uploading DNxHR HDR masters to YouTube provided they are less than 15 minutes long.  With these 4K DNxHR HDR masters eating a fixed 104Mbps for my videos (explained below) you can end up in situations where if you need to record more than 35 minutes worth of footage you might even exceed YouTube's 128GB file upload limit!  So we need a solution on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K.  We need to workaround Resolve Studio not having a web deliverable codec with HDR metadata support on Windows or Linux.  This likely means either h265 or VP9.
 
 I'll mention that while YouTube doesn't list support for ingesting h265 with HDR metadata it still works if you can send them a properly crafted file.  As of 12/2018 Resolve Studio doesn't export h265 with HDR metadata, only.  Resolve Studio on MacOS has HDR metadata support for VP9 built in, but not on Windows/Linux.  Basically Resolve on Windows doesn't have a convenient web deliverable codecs that supports HDR metadata which was one of the main motivations for creating this document to provide a workaround.  Premiere can export h265 with HDR metadata but I get strange shifts in color/gamma I can't fix.  Premiere also has other major problems with grading HDR10 where its still not recommended for finishing HDR content.
 
@@ -57,7 +57,7 @@ This repo contains a full set of instructions for using the ["Windows Subsystem 
 
 ### Vimeo
 
-I don't currently use Vimeo, but it does have HDR support.  I'm more keen to document HDR workflows with YouTube initially but it might also be fun sometime to more thoroughly test Vimeo with HDR see what advantages it has over YouTube if any.
+I don't currently use Vimeo but it does have HDR support.  I'm more keen to document HDR workflows with YouTube initially but it might also be fun sometime to more thoroughly test Vimeo with HDR see what advantages it has over YouTube if any.
 
 ## Recommended Hardware for HDR
 

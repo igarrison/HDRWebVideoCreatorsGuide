@@ -13,11 +13,12 @@
 	- [Requirements For Compiling ffmpeg With VP9 Support](#requirements-for-compiling-ffmpeg-with-vp9-support)
 	- [Compile VP9 Enabled ffmpeg](#compile-vp9-enabled-ffmpeg)
 	- [How To Compress an HDR Master to VP9](#how-to-compress-an-hdr-master-to-vp9)
-	- [Creating a Custom HDR to SDR LUT](#creating-a-custom-hdr-to-sdr-lut)
-	- [Embedding Custom HDR to SDR LUT Files](#embedding-custom-hdr-to-sdr-lut-files)
 	- [HDR Bitrates](#hdr-bitrates)
 	- [YouTube Optimizations for ffmpeg & Resolve Studio](#youtube-optimizations-for-ffmpeg-resolve-studio)
 	- [Results](#results)
+- [HDR to SDR Conversion LUTs (YouTube)](#hdr-to-sdr-conversion-luts-youtube)
+	- [Creating a Custom HDR to SDR LUT](#creating-a-custom-hdr-to-sdr-lut)
+	- [Embedding Custom HDR to SDR LUT Files](#embedding-custom-hdr-to-sdr-lut-files)
 - [FAQ](#faq)
 - [Special Thanks](#special-thanks)
 - [Author](#author)
@@ -119,20 +120,6 @@ cp ffmpeg_sources/ffmpeg/ffmpeg /mnt/c/HDR2VP9
 
 5. Double click on runme.bat.  If all works correctly you'll see this program periodically output a log of text as its encoding.  When its done you should find a file 2pass_vp9_output.mp4 in the same directory.
 
-## Creating a Custom HDR to SDR LUT
-
-YouTube will automatically convert SDR versions of your HDR videos uploaded to them, however if you dislike this color grade you can embed a LUT file into the video uploaded to YouTube that they will use for the SDR conversion process.  This is roughly how its done in Resolve Studio.
-
-<more notes here>
-
-## Embedding Custom HDR to SDR LUT Files
-
-1. Download [YouTube's Matroska Colour Metadata Ingestion Utility](https://github.com/YouTubeHDR/hdr_metadata) for your given platform.  Copy mkvinfo.exe/mkvmerge.exe into the same project directory.
-
-2. I recommend grabbing [Wesley Knapp's HDR_MetaJECTOR batch file](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) to simplify launching the mkvmerge incantation to inject HDR metadata or attach a SDR to SDR LUT file.  Copy the HDR_MetaJECTOR batch file into the same project directory.
-
-3. Double click on the ```HDR_MetaJECTOR.bat``` script in Windows Explorer.  This will launch an MSDOS window which you can drag-and-drop both your ```HDR_VP9_output.mp4``` and any LUT files to embed into your video file prior to uploading to YouTube.  It only takes a couple seconds to run and will produce a new file with your VP9 stream in a new ```.mkv``` container.
-
 ## HDR Bitrates
 
 You should know the bitrate of all your cameras and footage they produce.  If you don't have this information use some media inspection tools (VLC, exiftool) or internet searches to try and determine the bitrates.  My my Panasonic GH5 shoots 150Mbps at 4k 10-bit 4:2:2 so this is my maximum upper limit on bitrate for my HDR videos.
@@ -195,6 +182,23 @@ Click on the images to see the example video on YouTube.  TODO: replace the imag
 [![After VP9 Encoding, Highly Compressed](https://i.ytimg.com/vi/dV4p5qQx9Kw/maxresdefault.jpg)](https://www.youtube.com/watch?v=dV4p5qQx9Kw)
 
 Image quality differences can be seen especially in areas of motion (the waterfall) and there does appear to be a slight shift in color tint towards green or yellow.  I think the sharpness and quality of details is remarkably good for the static portions of the video in a side by side comparison.  Is it as high of quality as the DNxHR master?  No, but that wasn't the goal though!  We should only be using VP9 because our DNxHR masters are too large to upload to YouTube, our back is to a wall, and we need options like VP9/h265 to make some size/image quality trade-offs!  In the context of the 3.9GB -> 362MB reduction in file size while maintaining 10-bit color and HDR metadata I think the VP9 results here are still a huge win.
+
+# HDR to SDR Conversion LUTs (YouTube)
+
+## Creating a Custom HDR to SDR LUT
+
+YouTube will automatically convert SDR versions of your HDR videos uploaded to them, however if you dislike this color grade you can embed a LUT file into the video uploaded to YouTube that they will use for the SDR conversion process.  This is roughly how its done in Resolve Studio.
+
+<more notes here>
+
+## Embedding Custom HDR to SDR LUT Files
+
+1. Download [YouTube's Matroska Colour Metadata Ingestion Utility](https://github.com/YouTubeHDR/hdr_metadata) for your given platform.  Copy mkvinfo.exe/mkvmerge.exe into the same project directory.
+
+2. I recommend grabbing [Wesley Knapp's HDR_MetaJECTOR batch file](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) to simplify launching the mkvmerge incantation to inject HDR metadata or attach a SDR to SDR LUT file.  Copy the HDR_MetaJECTOR batch file into the same project directory.
+
+3. Double click on the ```HDR_MetaJECTOR.bat``` script in Windows Explorer.  This will launch an MSDOS window which you can drag-and-drop both your ```HDR_VP9_output.mp4``` and any LUT files to embed into your video file prior to uploading to YouTube.  It only takes a couple seconds to run and will produce a new file with your VP9 stream in a new ```.mkv``` container.
+
 
 # FAQ
 

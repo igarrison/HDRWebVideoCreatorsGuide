@@ -1,4 +1,4 @@
-# HDR for YouTube Workflow and HDR VP9 Encoding Guide for Resolve Studio 15 on Windows 10
+# HDR YouTube Creator Guide
 
 ## Introduction and Call For Quality
 

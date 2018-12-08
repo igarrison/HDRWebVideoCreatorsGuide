@@ -1,8 +1,24 @@
-# Windows 10 HDR VP9 Instructions for YouTube
+# HDR for YouTube Workflow and HDR VP9 Encoding Guide for Resolve Studio 15 on Windows 10
 
-When publishing HDR videos to YouTube it behooves us content creators to make the very best videos we can to showcase the technology and not continue to spread the bad HDR videos.  Its my intent to attempt to upload my MOV/DNxHR HQX 4K masters to YouTube right out of Resolve Studio so long as the size and duration of the video fall within a range I feel is acceptable (right now that is roughly less than 12GB).  I also generally like the process of exporting a high quality master video and then transcoding lower resolution and different resolutions and codec encodings of a video for web delivery from there.  I'll be fine uploading DNxHR HDR masters to YouTube provided they are less than 15 minutes long.  With these 4K DNxHR HDR masters eating a fixed 104Mbps you can end up in situations where if you need to record more than 35 minutes worth of footage you might even exceed YouTube's 128GB file upload limit!  So we need a solution on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K.
+## Introduction and Call For Quality
 
-I'll mention that while YouTube doesn't list support for ingesting h265 with HDR metadata it still does seem to work if you can send them a properly crafted file.  As of 12/2018 Resolve Studio doesn't export h265 with HDR metadata.  Premiere can do it technically but I get strange shifts in color/gamma.  Premiere also has other major problems with grading HDR10 where its still not recommended for finishing HDR content.  Resolve Studio on MacOS has support for VP9 built in.  The Windows/Linux versions of Resolve Studio do not support VP9 which is what this document aims to workaround.
+In April of 2017 I got a Panasonic GH5 which is a mirrorless digital camera and I was intensely curious about how it could record 10-bit color internally at 4:2:2 chroma-subsampling, and having a decent LOG gamma profile (V-LOG) grants an extra stop of dynamic range for a total of 12 stops.  Later the GH5 received a firmware update which allowed recording directly in HLG, a dynamic HDR standard that uses a rec2020 color space in camera.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I gave it a shot.  Progress was slow as there just aren't many people communicating about HDR content creation.
+
+When publishing HDR videos to YouTube it behooves us content creators to make the very best videos we can to showcase the technology and not continue to spread the bad HDR videos.  I see an unsettling number of people shooting 8-bit videos, using low dynamic range sensors like smartphones, not looking at scopes or adjusting highlights at all above 100 nits like its SDR, and even cranking contrast curves + saturation for an "HDR Look".  I'm not going to be that guy!  I want to aim for 10-bit color, 4k resolution or higher, wide gamut color space (rec2020, not DCI-P3 or rec709 though both are supported by YouTube for HDR), and 1000 nits brightness unless the times call for even more brightness.  Lets try and make content that looks as visually stunning as we can manage.
+
+## Platform HDR Requirements (YouTube)
+
+**It is my intent to attempt to upload my 4k 10-bit HDR MOV/DNxHR HQX masters to YouTube right out of Resolve Studio whenever possible** so long as the size and duration of the video fall within a range is acceptable (roughly less than 12GB).  I also like the process of exporting a high quality master video and then transcoding lower resolution and different resolutions and codec encodings of a video for web delivery from there.  I'll be fine uploading DNxHR HDR masters to YouTube provided they are less than 15 minutes long.  With these 4K DNxHR HDR masters eating a fixed 104Mbps for my videos (explained below) you can end up in situations where if you need to record more than 35 minutes worth of footage you might even exceed YouTube's 128GB file upload limit!  So we need a solution on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K.  We need to workaround Resolve Studio not having a web deliverable codec with HDR metadata support.  This likely means either h265 or VP9.
+
+I'll mention that while YouTube doesn't list support for ingesting h265 with HDR metadata it still works if you can send them a properly crafted file.  As of 12/2018 Resolve Studio doesn't export h265 with HDR metadata, only.  Resolve Studio on MacOS has HDR metadata support for VP9 built in, but not on Windows/Linux.  Basically Resolve on Windows doesn't have a convenient web deliverable codecs that supports HDR metadata which was one of the main motivations for creating this document to provide a workaround.  Premiere can export h265 with HDR metadata but I get strange shifts in color/gamma I can't fix.  Premiere also has other major problems with grading HDR10 where its still not recommended for finishing HDR content.
+
+| NLE Suite | Support for HDR | Recommended |
+|-----------|--------------------------|-------------|
+| Premiere | h265, h264 in mp4 triggers as HDR on YouTube but color is bad, DNxHR won't work in Premiere because its in an mxf instead of a mov container | Not yet |
+| Resolve Studio | Prores (Macos-only), VP9 (Macos-only), DNxHR | Yes |
+| Final Cut Pro | Does have some HDR support but I'm unclear on the details | Maybe? |
+
+16bit TIFF files, OpenEXR, and Cineform 12-bit are also fairly commonly supported and are good suitable intermediate HDR codecs.
 
 I found a [google document written by Steve Robertson who works on HDR at YouTube that is dense with good information on publishing HDR to YouTube](https://docs.google.com/document/u/1/d/1OHGOE4Ihv6SKazfiub_DP1lJbR9PdMMPOQYxPJQAES4/pub#h.jd3wzt48geu).  Steve doesn't even mention h265.  He recommends VP9 maybe because [Google developed it](https://en.wikipedia.org/wiki/VP9), they [seem to promote it](https://youtube-eng.googleblog.com/2015/04/vp9-faster-better-buffer-free-youtube.html), have widely adopted it on YouTube, and VP9 competes directly against h265.
 
@@ -16,17 +32,19 @@ This repo contains a full set of instructions for using the ["Windows Subsystem 
 
 You will need:
 
-1. A running Windows 10 install, or a Centos/RHEL, or Debian/Apt Linux distribution.  Linux users can skip to step #4 in the next section.
+1. A running Windows 10 install, or a Centos/RHEL, or Debian/Apt Linux distribution.
 
-2. My batch file and bash shell script in [the zip file that you can download right here](https://github.com/igarrison/HDR2VP9/archive/master.zip).
+2. Resolve Studio.  If you are new to HDR and haven't already been making HDR videos you probably will want Resolve Studio.  It may not be used in some of the tutorials in this guide but its the top tool for HDR content creation right with its excellent color management, HDR support, and color grading capabilities.
 
-3. To install the Windows Subsystem for Linux as instructed in the next section below.  This is needed to compile ffmpeg, its dependencies, and to run an application that seems to run better in a linux/posix environment.
+3. An HDR monitor, TV, possibly even a phone/tablet with an HDR display.  To my surprise there are some great tips for grading HDR on an SDR display using monitor LUTs which have allowed me to get HDR grades that look great on an HDR display, however I still really want to see it in HDR before publishing anything.  I also recommend something like a [DeckLink Mini Monitor 4K HDMI output card](https://www.blackmagicdesign.com/products/decklink/techspecs/W-DLK-32) capable of sending a full 444 HDMI signal with HDR metadata to your HDR TV/Monitor so it can be used for 10-bit HDR display inside Resolve Studio as a dedicated monitor.
 
-4. I also recommended downloading [Wesley Knapp's HDR_MetaJECTOR.bat](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) and [YouTube's Matroska Colour Metadata Ingestion Utility](https://github.com/YouTubeHDR/hdr_metadata).  These will be used for embedding HDR to SDR LUT files into your HDR files uploaded to YouTube if you find the automatic HDR to SDR conversion unsatisfactory.
+4. My batch file and bash shell script in [the zip file that you can download right here](https://github.com/igarrison/HDR2VP9/archive/master.zip) and installing the Windows Subsystem for Linux (WSL) as instructed in the next section below.  WSL is needed to compile ffmpeg, its dependencies, and to run the resulting binary in a linux/posix environment where they encode VP9 more reliably.  If you don't care about VP9 on Windows or smaller HDR files then you don't need to bother with WSL or my zip file.
+
+5. I also recommended downloading [Wesley Knapp's HDR_MetaJECTOR.bat](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) and [YouTube's Matroska Colour Metadata Ingestion Utility](https://github.com/YouTubeHDR/hdr_metadata).  These will be used for embedding HDR to SDR LUT files into your HDR files uploaded to YouTube if you find the automatic HDR to SDR conversion unsatisfactory.
 
 ## Compile vp9 enabled ffmpeg
 
-1. In Windows 10 head to Control Panel > Programs > Turn Windows Features On Or Off. Enable the "Windows Subsystem for Linux" option in the list, and then click the OK button.  This will have you reboot your system when its finished.
+1. Linux users can skip to step 4.  In Windows 10 head to Control Panel > Programs > Turn Windows Features On Or Off. Enable the "Windows Subsystem for Linux" option in the list, and then click the OK button.  This will have you reboot your system when its finished.
 
 2. open the Microsoft Store from the Start menu, and search for "Ubuntu".  As of 12/7/2018 I went with Ubuntu 18.04 LTS and it worked fine.  Click the "Get" button to download it.
 
@@ -51,9 +69,9 @@ cp ffmpeg_sources/ffmpeg/ffmpeg /mnt/c/HDR2VP9
 
 1. Using the Windows Explorer make a new project directory inside C:\HDR2VP9
 
-2. Extract the contents of the [zip file in this repo](https://github.com/igarrison/HDR2VP9/archive/master.zip) into it.
+2. Extract the contents of the [zip file in this repo](https://github.com/igarrison/HDR2VP9/archive/master.zip) into your new empty project directory.
 
-3. Copy the C:\HDR2VP9\ffmpeg file into it.  This is the same file compiled from the Insta
+3. Copy the ```C:\HDR2VP9\ffmpeg``` file into it.  This is the same file compiled from the previous section.
 
 3. Copy your mov/DNxHR HQX HDR master file into the project directory and rename it to HDR_master.mov
 
@@ -112,19 +130,61 @@ The default bitrate in ```ffmpeg_vp9_incantation.sh``` is 90Mbps minimum, 95Mbps
 
 Resolve and other editing suites may expose some but not all of a codec's parameters so videos may not always strictly comply with YouTube's recommendations.  Their video ingestion systems are fairly flexible and mostly do a great job of making the best video as quickly as they can with what you upload to them.  I've already added these flags to ```ffmpeg_vp9_incantation.sh```.
 
-* [YouTube recommends a moov atom at the front of the file (Fast Start)](https://support.google.com/youtube/answer/1722171?hl=en).  Make sure to use a streaming format, like an mkv, .mp4 or a .mov, with the metadata at the front of the container YouTube will begin processing your video WHILE you are uploading it, drastically reducing overall turnaround time. This will make things MUCH faster, with no negative side effect."  This is ```-movflags +faststart``` in ffmpeg.
+* [YouTube recommends a moov atom at the front of the file (fast start)](https://support.google.com/youtube/answer/1722171?hl=en).  Make sure to use a streaming format, like an mkv, .mp4 or a .mov, with the metadata at the front of the container YouTube will begin processing your video WHILE you are uploading it, drastically reducing overall turnaround time. This will make things MUCH faster, with no negative side effect."  This is ```-movflags +faststart``` in ffmpeg.
 
 * [YouTube recommends 2 consecutive B frames](https://support.google.com/youtube/answer/1722171?hl=en).  This is ```-bf 2``` in ffmpeg.
 
 * [YouTube recommends close GOP](https://support.google.com/youtube/answer/1722171?hl=en).  This is ```-flags +cgop``` in ffmpeg.
 
-* [Consider this Encoding for Youtube article which contains tips written by google video infrastructure engineer Colleen Henry](http://www.streamingmedia.com/Articles/Editorial/Featured-Articles/Encoding-for-YouTube-How-to-Get-the-Best-Results-83876.aspx) which says "You can noticeably improve the quality of your video on YouTube by using a sophisticated, scene aware, denoising filter prior to uploading."  The denoise features in Resolve Studio is pretty good and we should use it (though carefully as it can reduce image details if pushed too far).
+* [Consider this Encoding for Youtube article which contains tips by google video infrastructure engineer Colleen Henry](http://www.streamingmedia.com/Articles/Editorial/Featured-Articles/Encoding-for-YouTube-How-to-Get-the-Best-Results-83876.aspx) which says "You can noticeably improve the quality of your video on YouTube by using a sophisticated, scene aware, denoising filter prior to uploading."  The denoise features in Resolve Studio is pretty good and we should use it (though carefully as it can reduce image details if pushed too far).
 
 ## Results
 
-In a test I reduced a 3.9GB MOV DNxHR HQX HDR master from 3.9GB to 364MB without stripping HDR metadata using this workflow recommended by Google VP9/HDR Engineers.  This was a 47 second video and it took 49 minutes to encode on a i9 7900X 10-core CPU with 64GB RAM (WARNING: it is slow).  You can tune the speed by editing ```ffmpeg_vp9_incantation.sh``` if you are willing to sacrifice some quality for speed.  Its a value between 0 (slowest/best quality) and 4 (fastest/lowest quality) and the default is 1.  You can also adjust other things like the container, bitrate, and input/output filenames as well.
+You can tune the encoding speed by editing ```ffmpeg_vp9_incantation.sh``` if you are willing to sacrifice some quality for speed.  Its a value between 0 (slowest/best quality) and 4 (fastest/lowest quality) and the default is 1.  You can also adjust other things like the container, bitrate, and input/output filenames as well.
 
-<include some before/after photos but stress that the goal is to use vp9 compression only in cases where HDR content is long in duration or otherwise too large to upload to YouTube>
+Click on the images to see the example video on YouTube.  TODO: replace the images with the exact same video frame for a better side by side comparison.
+
+**BEFORE VP9 ENCODING:** Consider this the scientific control.  Its a 3.9GB 47 second MOV/DNxHR HQX HDR master straight out of Resolve Studio to Youtube and processed by YouTube's automatic HDR to SDR conversion.
+
+[![Before VP9 Encoding, High Quality Original Master](https://i.ytimg.com/vi/5eDVhFBoc20/maxresdefault.jpg)](https://www.youtube.com/watch?v=5eDVhFBoc20)
+
+ **AFTER VP9 ENCODING**: the VP9 encode it took 49 minutes to reduce this 47 second 3.9GB video to 362MB without stripping HDR metadata using the workflow recommended by Google VP9/infrastructure/HDR engineers.   This also uses YouTube's automatic HDR to SDR conversion.  WARNING: My PC is a beefy 10-core i9-7900X with 64GB RAM and this encoding is very slow but the speed is configurable!
+
+[![After VP9 Encoding, Highly Compressed](https://i.ytimg.com/vi/dV4p5qQx9Kw/maxresdefault.jpg)](https://www.youtube.com/watch?v=dV4p5qQx9Kw)
+
+Image quality differences can be seen especially in areas of motion (the waterfall) and there does appear to be a slight shift in color tint towards green or yellow.  I think the sharpness and quality of details is remarkably good for the static portions of the video in a side by side comparison.  Is it as high of quality as the DNxHR master?  No, but that wasn't the goal though!  We should only be using VP9 because our DNxHR masters are too large to upload to YouTube, our back is to a wall, and we need options like VP9/h265 to make some size/image quality trade-offs!  In the context of the 3.9GB -> 362MB reduction in file size while maintaining 10-bit color and HDR metadata I think the VP9 results here are still a huge win.
+
+## FAQ
+
+Q. Premiere for HDR video?
+
+A. No, not yet!  It does have rec2020/HDR scopes, the ability to export 10-bit h265 with HDR metadata, but a few of its major flaws: 1) The viewports and external monitors managed by Premiere are rec709-only and everything being displayed will peak as soon as brightness is pushed at or above 120 nits.  [Mysterybox writes about the problem here if you search for 120 nits](https://www.mysterybox.us/blog/2016/11/17/adobe-premiere-cc-2017-real-world-feature-review).  This means you cannot ever see what you grade in Premiere no matter what you do, and I'm not jedi enough to ONLY use the scopes. and 2) Premiere lacks any real color management support which is something that instantly becomes more complicated when you leave the srgb/rec709 world for the wild west of rec2020 and are having to deal with LOG gamma curves directly because there aren't as many rec2020 LUTs as there are for rec709/SRGB.  I love Premiere for editing but it has been a big disappointment when it comes to HDR as I lost months trying to make it work until I became aware of its shortcomings.
+
+---
+
+Q. This whole Rube Goldberg machine with a Linux environment to run a custom compiled version of ffmpeg with a shell script called by a bath file... really?  Why can't you suggest something better?  What about XYZ?
+
+A. I couldn't find any windows builds of ffmpeg with vp9 support that didn't have problems with a 2-pass encodes.  Maybe this will get fixed in a future build.  If anyone sees workflow improvements please email me.  I'm a Linux guy so solutions in that ecosystem are easy to me even if they seem awkward on the Windows platform.
+
+---
+
+Q. Why not HEVC/h265 instead of VP9 out of ffmpeg?
+
+A. It performs similarly to VP9 and is gaining more support all the time.  It has the advantage that you could just use the official ffmpeg builds for h265 and skip on compiling ffmpeg entirely.  I think h265 is great and probably would have used it if I hadn't stumbled on some of those google engineer writings about VP9.  I've used h265 a fair bit but haven't ever done anything with VP9 before.  I have also heard a few smart engineers talking about some of the technical merits of vp9 over h265 for more efficient compression that I've been meaning to see for myself.
+
+---
+
+Q. What is the deal with 10-bit color on Geforce cards on Windows?  Do I need to buy a Quadro card for HDR?
+
+A.
+
+## Special Thanks
+
+Daniel Gordon
+
+## Author
+
+Ian Garrison <garrison@technoendo.net>
 
 ## Additional Resources
 

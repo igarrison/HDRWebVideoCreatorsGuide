@@ -4,7 +4,7 @@
 
 In April of 2017 I got a Panasonic GH5 which is a mirrorless digital camera and I was intensely curious about how it could record 10-bit color internally at 4:2:2 chroma-subsampling, and having a decent LOG gamma profile (V-LOG) grants an extra stop of dynamic range for a total of 12 stops.  Later the GH5 received a firmware update which allowed recording directly in HLG, a dynamic HDR standard that uses a rec2020 color space in camera.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I gave it a shot.  Progress was slow as there just aren't many people communicating about HDR content creation.
 
-When publishing HDR videos to YouTube it behooves us content creators to make the very best videos we can to showcase the technology and not continue to spread the bad HDR videos.  I see an unsettling number of people shooting 8-bit videos, using low dynamic range sensors like smartphones, not looking at scopes or adjusting highlights at all above 100 nits like its SDR, and even cranking contrast curves + saturation for an "HDR Look".  I'm not going to be that guy!  I want to aim for 10-bit color, 4k resolution or higher, wide gamut color space (rec2020, not DCI-P3 or rec709 though both are supported by YouTube for HDR), and 1000 nits brightness unless the times call for even more brightness.  Lets try and make content that looks as visually stunning as we can manage.
+When publishing HDR videos to YouTube I think us content creators should make the very best videos we can to showcase this new technology and not continue to spread bad HDR videos.  I see an unsettling number of people on YouTube making HDR tutorials where they seem to shoot video in 8-bit color, using low dynamic range sensors like smartphones, without looking at scopes or adjusting highlights at all above 100 nits SDR ranges, and even cranking contrast curves + saturation for a "HDR Look".  I'm not going to be that guy!  I want to aim for 10-bit color, 4k resolution or higher if possible, wide gamut color space (rec2020, not DCI-P3 or rec709 though both are supported by YouTube for HDR), and 1000 nits brightness unless the times call for even more brightness.  Lets try and make content that pushes HDR as far as our hardware/software allows to make the most visually stunning videos!
 
 ## Platform HDR Requirements (YouTube)
 
@@ -176,7 +176,20 @@ A. It performs similarly to VP9 and is gaining more support all the time.  It ha
 
 Q. What is the deal with 10-bit color on Geforce cards on Windows?  Do I need to buy a Quadro card for HDR?
 
-A.
+A. TODO: I've got some good responses the 10-bit/HDR display problems.
+
+---
+
+Q. How to integrate RAW/DNG images and OpenEXR's into Resolve Studio for HDR?
+
+A. TODO: Something I'd like to know.
+
+---
+
+Q. How do you manage different color spaces and gammas in Resolve Studio in an HDR project?  All of my photos and motion graphics are SRGB apparently!
+
+A. TODO: I'm aware of a few ways to do this, but should just pick one method and document it.  If there is a better way hopefully somebody will tell me.
+
 
 ## Special Thanks
 

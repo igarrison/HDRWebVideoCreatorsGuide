@@ -63,11 +63,11 @@ I don't currently use Vimeo but it does have HDR support.  I'm more keen to docu
 
 To engage in HDR content creation you will need:
 
-3. An HDR monitor, TV, possibly even a phone/tablet with an HDR display.  To my surprise there are some great tips for grading HDR on an SDR display using monitor LUTs which have allowed me to get HDR grades that look great on an HDR display, however I still really want to see it in HDR before publishing anything.  I also recommend something like a [DeckLink Mini Monitor 4K HDMI output card](https://www.blackmagicdesign.com/products/decklink/techspecs/W-DLK-32) capable of sending a full 444 HDMI signal with HDR metadata to your HDR TV/Monitor so it can be used for 10-bit HDR display inside Resolve Studio as a dedicated monitor.
+1. An HDR monitor, TV, possibly even a phone/tablet with an HDR display.  To my surprise there are some great tips for grading HDR on an SDR display using monitor LUTs which have allowed me to get HDR grades that look great on an HDR display, however I still really want to see it in HDR before publishing anything.  I also recommend something like a [DeckLink Mini Monitor 4K HDMI output card](https://www.blackmagicdesign.com/products/decklink/techspecs/W-DLK-32) capable of sending a full 444 HDMI signal with HDR metadata to your HDR TV/Monitor so it can be used for 10-bit HDR display inside Resolve Studio as a dedicated monitor.
 
 ## Recommended Software for HDR
 
-2. Resolve Studio.  If you are new to HDR and haven't already been making HDR videos you probably will want Resolve Studio.  It may not be used in some of the tutorials in this guide but its the top tool for HDR content creation right with its excellent color management, HDR support, and color grading capabilities.
+1. Resolve Studio.  If you are new to HDR and haven't already been making HDR videos you probably will want Resolve Studio.  It may not be used in some of the tutorials in this guide but its the top tool for HDR content creation right with its excellent color management, HDR support, and color grading capabilities.
 
 # Compiling ffmpeg With VP9 support
 
@@ -80,9 +80,9 @@ here we go
 
 2. [YouTube's Matroska Colour Metadata Ingestion Utility](https://github.com/YouTubeHDR/hdr_metadata)
 
-4. My batch file and bash shell script in [the zip file that you can download right here](https://github.com/igarrison/HDRYouTubeCreatorGuide/archive/master.zip) and installing the Windows Subsystem for Linux (WSL) as instructed in the next section below.  WSL is needed to compile ffmpeg, its dependencies, and to run the resulting binary in a linux/posix environment where they encode VP9 more reliably.  If you don't care about VP9 on Windows or smaller HDR files then you don't need to bother with WSL or my zip file.
+3. My batch file and bash shell script in [the zip file that you can download right here](https://github.com/igarrison/HDRYouTubeCreatorGuide/archive/master.zip) and installing the Windows Subsystem for Linux (WSL) as instructed in the next section below.  WSL is needed to compile ffmpeg, its dependencies, and to run the resulting binary in a linux/posix environment where they encode VP9 more reliably.  If you don't care about VP9 on Windows or smaller HDR files then you don't need to bother with WSL or my zip file.
 
-5. I also recommended downloading [Wesley Knapp's HDR_MetaJECTOR.bat](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) and .  These will be used for embedding HDR to SDR LUT files into your HDR files uploaded to YouTube if you find the automatic HDR to SDR conversion unsatisfactory.
+4. I also recommended downloading [Wesley Knapp's HDR_MetaJECTOR.bat](http://www.wesleyknapp.com/s/Wesley_Knapp-HDR_Tools_v3.zip) and .  These will be used for embedding HDR to SDR LUT files into your HDR files uploaded to YouTube if you find the automatic HDR to SDR conversion unsatisfactory.
 
 ## Compile VP9 Enabled ffmpeg
 
@@ -115,9 +115,9 @@ cp ffmpeg_sources/ffmpeg/ffmpeg /mnt/c/HDR2VP9
 
 3. Copy the ```C:\HDR2VP9\ffmpeg``` file into it.  This is the same file compiled from the previous section.
 
-3. Copy your mov/DNxHR HQX HDR master file into the project directory and rename it to HDR_master.mov
+4. Copy your mov/DNxHR HQX HDR master file into the project directory and rename it to HDR_master.mov
 
-4. Double click on runme.bat.  If all works correctly you'll see this program periodically output a log of text as its encoding.  When its done you should find a file 2pass_vp9_output.mp4 in the same directory.
+5. Double click on runme.bat.  If all works correctly you'll see this program periodically output a log of text as its encoding.  When its done you should find a file 2pass_vp9_output.mp4 in the same directory.
 
 ## Creating a Custom HDR to SDR LUT
 

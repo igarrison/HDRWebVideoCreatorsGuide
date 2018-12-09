@@ -4,6 +4,7 @@
 
 - [HDR Video Creator Guide](#hdr-video-creator-guide)
 	- [Introduction and Call For Quality](#introduction-and-call-for-quality)
+- [How To Shoot HDR Video?](#how-to-shoot-hdr-video)
 	- [Online Video Platform HDR Requirements](#online-video-platform-hdr-requirements)
 		- [YouTube](#youtube)
 		- [Vimeo](#vimeo)
@@ -31,6 +32,8 @@
 In April of 2017 I got a Panasonic GH5 which is a mirrorless digital camera and I was intensely curious about how it could record 10-bit color internally at 4:2:2 chroma-subsampling, and having a decent LOG gamma profile (V-LOG) grants an extra stop of dynamic range for a total of 12 stops.  Later the GH5 received a firmware update which allowed recording directly in HLG, a dynamic HDR standard that uses a rec2020 color space in camera.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I gave it a shot.  Progress was slow as there just aren't many people communicating about HDR content creation.
 
 When publishing HDR videos to YouTube I think us content creators should make the very best videos we can to showcase this new technology and not continue to spread bad HDR videos.  I see an unsettling number of people on YouTube making HDR tutorials where they seem to shoot video in 8-bit color, using low dynamic range sensors like smartphones, without looking at scopes or adjusting highlights at all above 100 nits SDR ranges, and even cranking contrast curves + saturation for a "HDR Look".  I'm not going to be that guy!  I want to aim for 10-bit color, 4k resolution or higher if possible, wide gamut color space (rec2020, not DCI-P3 or rec709 though both are supported by YouTube for HDR), and 1000 nits brightness unless the times call for even more brightness.  Lets try and make content that pushes HDR as far as our hardware/software allows to make the most visually stunning videos!
+
+# How To Shoot HDR Video?
 
 ## Online Video Platform HDR Requirements
 
@@ -159,7 +162,7 @@ The default bitrate in ```ffmpeg_vp9_incantation.sh``` is 90Mbps minimum, 95Mbps
 
 Resolve and other editing suites may expose some but not all of a codec's parameters so videos may not always strictly comply with YouTube's recommendations.  Their video ingestion systems are fairly flexible and mostly do a great job of making the best video as quickly as they can with what you upload to them.  I've already added these flags to ```ffmpeg_vp9_incantation.sh```.
 
-* [YouTube recommends a moov atom at the front of the file (fast start)](https://support.google.com/youtube/answer/1722171?hl=en).  Make sure to use a streaming format, like an mkv, .mp4 or a .mov, with the metadata at the front of the container YouTube will begin processing your video WHILE you are uploading it, drastically reducing overall turnaround time. This will make things MUCH faster, with no negative side effect."  This is ```-movflags +faststart``` in ffmpeg.
+* [YouTube recommends a moov atom at the front of the file (fast start)](https://support.google.com/youtube/answer/1722171?hl=en).  Make sure to use a streaming format, like an mkv, .mp4 or a .mov, with the metadata at the front of the container YouTube will begin processing your video WHILE you are uploading it, drastically reducing overall turnaround time. This will make things MUCH faster, with no negative side effect."  The "Network Optimization" checkbox under delivery in Resolve Studio does this but we want it maintained through our ffmpeg encodes as we could be dealing with huge files.  This is ```-movflags +faststart``` in ffmpeg.
 
 * [YouTube recommends 2 consecutive B frames](https://support.google.com/youtube/answer/1722171?hl=en).  This is ```-bf 2``` in ffmpeg.
 
@@ -235,6 +238,12 @@ A. TODO: Something I'd like to know.
 Q. How do you manage different color spaces and gammas in Resolve Studio in an HDR project?  All of my photos and motion graphics are SRGB apparently!
 
 A. TODO: I'm aware of a few ways to do this, but should just pick one method and document it.  If there is a better way hopefully somebody will tell me.
+
+---
+
+Q. Is HDR Photography like HDR Video?
+
+A. No!
 
 
 # Special Thanks

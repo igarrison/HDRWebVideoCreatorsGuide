@@ -34,7 +34,8 @@ then
 fi
 
 # 2 pass
-$FFMPEG -y -report -i $SOURCEFILE -b:v $AVGBR -speed 4 -pass 1 -pix_fmt yuv420p10le -color_primaries 9 -color_trc 16 -colorspace 9 -color_range 1 -maxrate $MAXBR -minrate $MINBR -profile:v 2 -vcodec libvpx-vp9 -f $OUTPUTCONTAINER -bf 2 -flags +cgop /dev/null && $FFMPEG -y -report -i $SOURCEFILE -b:v $AVGBR -auto-alt-ref 1 -lag-in-frames 25 -pass 2 -pix_fmt yuv420p10le -color_primaries 9 -color_trc 16 -colorspace 9 -color_range 1 -maxrate $MAXBR -minrate $MINBR -profile:v 2 -vcodec libvpx-vp9 -bf 2 -movflags +faststart -speed $SPEED -flags +cgop $OUTPUTFILE
+# -auto-alt-ref 1 -lag-in-frames 25
+$FFMPEG -y -report -i $SOURCEFILE -b:v $AVGBR -speed 4 -pass 1 -pix_fmt yuv420p10le -color_primaries 9 -color_trc 16 -colorspace 9 -color_range 1 -maxrate $MAXBR -minrate $MINBR -profile:v 2 -vcodec libvpx-vp9 -f $OUTPUTCONTAINER -bf 2 -flags +cgop /dev/null && $FFMPEG -y -report -i $SOURCEFILE -b:v $AVGBR -pass 2 -pix_fmt yuv420p10le -color_primaries 9 -color_trc 16 -colorspace 9 -color_range 1 -maxrate $MAXBR -minrate $MINBR -profile:v 2 -vcodec libvpx-vp9 -bf 2 -movflags +faststart -speed $SPEED -flags +cgop $OUTPUTFILE
 
 read -p "Press enter to exit"
 exit

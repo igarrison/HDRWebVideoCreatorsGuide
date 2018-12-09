@@ -29,19 +29,67 @@
 
 ## Introduction and Call For Quality
 
-In April of 2017 I got a Panasonic GH5 which is a mirrorless digital camera and I was intensely curious about how it could record 10-bit color internally at 4:2:2 chroma-subsampling, and having a decent LOG gamma profile (V-LOG) grants an extra stop of dynamic range for a total of 12 stops.  Later the GH5 received a firmware update which allowed recording directly in HLG, a dynamic HDR standard that uses a rec2020 color space in camera.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I gave it a shot.  Progress was slow as there just aren't many people communicating about HDR content creation.
+I am Ian Garrison, a computer nerd and Youtuber.  In April of 2017 I got a Panasonic GH5 which is a mirrorless digital camera which opened the doors to the possibility of making HDR10 video.  Initially there was very little good information on HDR10 video creation and then over time new pieces of information were published and I'm
 
-When publishing HDR videos to YouTube I think us content creators should make the very best videos we can to showcase this new technology and not continue to spread bad HDR videos.  I see an unsettling number of people on YouTube making HDR tutorials where they seem to shoot video in 8-bit color, using low dynamic range sensors like smartphones, without looking at scopes or adjusting highlights at all above 100 nits SDR ranges, and even cranking contrast curves + saturation for a "HDR Look".  I'm not going to be that guy!  I want to aim for 10-bit color, 4k resolution or higher if possible, wide gamut color space (rec2020, not DCI-P3 or rec709 though both are supported by YouTube for HDR), and 1000 nits brightness unless the times call for even more brightness.  Lets try and make content that pushes HDR as far as our hardware/software allows to make the most visually stunning videos!
+can record 10-bit color internally, has a LOG gamma profile (V-LOG) granting an extra stop of dynamic range for a total of 12 stops on the camera.  Months later the GH5 received a firmware update which allowed recording directly in HLG (Hybrid LOG Gamma), a dynamic HDR standard that uses rec2020 color space.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I began investigating HDR10 video on YouTube.
+
+When publishing HDR videos for the web I think us content creators should make the very best videos we can to showcase this new technology and not continue to spread bad HDR videos.  I see an unsettling number of people on YouTube making HDR tutorials where they seem to shoot video in 8-bit color, using low dynamic range sensors like smartphones, without looking at scopes or adjusting highlights at all above 100 nits SDR ranges, and even cranking contrast curves + saturation for a "HDR Look".  Let's not be that guy!  Lets aim high.  I want to deliver 10-bit color, 4k resolution, wide gamut color spaces like rec2020 over DCI-P3/REC709, and 1000 nits brightness unless the times call for even more brightness.  Let's try and make content that pushes HDR as far as our hardware/software allows to make the most visually stunning videos!
+
+# What Is High Dynamic Range Video?
+
+Dynamic range describes the ratio between the maximum and minimum measurable light intensities (black and white) and to have a higher dynamic range means being able to record or display more detail in the darkest and brightest parts of an image.
+
+<p align="center">
+  <img width="1024" height="370" src="images/dynamic_range_window_concept.png">
+</p>
+
+Dynamic range has to do with how a camera records or a monitor/tv displays the darkest and brightest parts of an image.  the difference in brightness between the brightest parts of a scene, its darkest parts,
+
+"The dynamic range that can be perceived by the human eye in a single image is around 14 stops. SDR video with a conventional gamma curve and a bit depth of 8-bits per sample has a dynamic range of about 6 stops. Professional SDR video with a bit depth of 10-bits per sample has a dynamic range of about 10 stops.  When HDR content is displayed on a 2,000 cd/m2 display with a bit depth of 10-bits per sample it has a dynamic range of 200,000:1 or 17.6 stops, a range not offered by the majority of current displays.""
+
+https://en.wikipedia.org/wiki/High-dynamic-range_video
+
+https://en.wikipedia.org/wiki/Standard-dynamic-range_video
+
+<p align="center">
+  <img width="1024" height="600" src="images/Camera_Dynamic_Range_output.png">
+</p>
+
+Display devices like Smartphones, Televisions, and LCD Monitors also have their own dynamic range limitations.
+
+<p align="center">
+  <img width="1024" height="458" src="images/Display_Device_Dynamic_Range_output.png">
+</p>
+
+Most of the HDR standards are pushing for 10-bit color depth where 8-bit color depth has been ubiquitous.  I'm especially excited about this change as we're heading in a direction which could finally eliminate color  dithering which still plaguing common household electronics.  I'm tired of seeing photographs or videos of a blue sky with jagged lines of color banding.
+
+<p align="center">
+  <img width="1024" height="512" src="images/8bitvs10bitcolor.png">
+</p>
+
+Also in addition to higher color depth (1024 channels per color instead of 256) HDR also departs from the narrow color gamuts like rec709 and SRGB for wide color gamuts like rec2020.  
+
+https://en.wikipedia.org/wiki/Rec._709
+
+https://en.wikipedia.org/wiki/Rec._2020
+
+<p align="center">
+  <img width="977" height="647" src="images/rec2020_rec709_colors.png">
+</p>
 
 # How To Shoot HDR Video?
 
 ## Online Video Platform HDR Requirements
 
+**It is my intent to attempt to upload my 4k 10-bit HDR MOV/DNxHR HQX masters right out of Resolve Studio whenever possible for maximum image quality** so long as the video is under say 12GB in size.  The bitrate of DNxHR profiles is fixed for a given resolution and framerate and at my preferred resolution of 4k and framerate of 29.976 frames per second I made a 47 second video which with DNxHR HQX and HDR metadata landed at 3.9GB in size.  If I multiply 3.9GB by 34 (minutes) we get 132GB which would exceed YouTube's maximum file size limit of 128GB.  So its probably a good idea to have a solution ready on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K without stripping HDR metadata.
+
 ### YouTube
 
-**It is my intent to attempt to upload my 4k 10-bit HDR MOV/DNxHR HQX masters to YouTube right out of Resolve Studio whenever possible** so long as the size and duration of the video fall within a range is acceptable (roughly less than 12GB).  I also like the process of exporting a high quality master video and then transcoding lower resolution and different resolutions and codec encodings of a video for web delivery from there.  I'll be fine uploading DNxHR HDR masters to YouTube provided they are less than 15 minutes long.  With these 4K DNxHR HDR masters eating a fixed 104Mbps for my videos (explained below) you can end up in situations where if you need to record more than 35 minutes worth of footage you might even exceed YouTube's 128GB file upload limit!  So we need a solution on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K.  We need to workaround Resolve Studio not having a web deliverable codec with HDR metadata support on Windows or Linux.  This likely means either h265 or VP9.
 
-I'll mention that while YouTube doesn't list support for ingesting h265 with HDR metadata it still works if you can send them a properly crafted file.  As of 12/2018 Resolve Studio doesn't export h265 with HDR metadata, only.  Resolve Studio on MacOS has HDR metadata support for VP9 built in, but not on Windows/Linux.  Basically Resolve on Windows doesn't have a convenient web deliverable codecs that supports HDR metadata which was one of the main motivations for creating this document to provide a workaround.  Premiere can export h265 with HDR metadata but I get strange shifts in color/gamma I can't fix.  Premiere also has other major problems with grading HDR10 where its still not recommended for finishing HDR content.
+
+We need to workaround Resolve Studio not having a web deliverable codec with HDR metadata support on Windows or Linux.  This likely means either h265 or VP9.
+
+I'll mention that while YouTube doesn't list support for ingesting h265 with HDR metadata it still works if you can send them a properly crafted file.  As of 12/2018 Resolve Studio doesn't export h265 with HDR metadata.  Resolve Studio on MacOS has HDR metadata support for VP9 built in, but not on Windows/Linux.  Basically Resolve on Windows doesn't have a convenient web deliverable codecs that supports HDR metadata which was one of the main motivations for creating this document to provide a workaround.  Premiere can export h265 with HDR metadata but I get strange shifts in color/gamma I can't fix.  Premiere also has other major problems with grading HDR10 where its still not recommended for finishing HDR content.
 
 | NLE Suite | Support for HDR | Recommended |
 |-----------|--------------------------|-------------|
@@ -77,10 +125,35 @@ To engage in HDR content creation you will need:
 
 1. Resolve Studio.  If you are new to HDR and haven't already been making HDR videos you probably will want Resolve Studio.  It may not be used in some of the tutorials in this guide but its the top tool for HDR content creation right with its excellent color management, HDR support, and color grading capabilities.
 
+### Setup an HDR Project in Resolve Studio 15
+
+TODO: write more detailed instructions to accompany images
+
+<p align="center">
+  <img width="449" height="1197" src="images/delivery_dnxhr_export_settings.png">
+</p>
+
+<p align="center">
+  <img width="760" height="799" src="images/preferences_user_color.png">
+</p>
+
+<p align="center">
+  <img width="850" height="1321" src="images/project_settings_master_settings.png">
+</p>
+
+<p align="center">
+  <img width="847" height="1287" src="images/project_settings_color_management.png">
+</p>
+
+### SRGB Color Space in an HDR Project in Resolve Studio 15
+
+<p align="center">
+  <img width="1653" height="1479" src="images/media_management_right_click_srgb_color_space.png">
+</p>
+
 # Compiling ffmpeg With VP9 support
 
 here we go
-
 
 ## Requirements For Compiling ffmpeg With VP9 Support
 
@@ -111,8 +184,8 @@ $ sudo ./ffmpeg-build-script.sh
 5. Assuming the build ran successfully we should have an 'ffmpeg' binary we can run.  Lets copy this file outside of this Linux environment to a place where you can easily click launch the script with the Windows Explorer.  In the bash shell lets make a directory on your C drive called "HDR2VP9" and copy the ffmpeg binary into it.
 
 ```bash
-mkdir -p /mnt/c/HDR2VP9
-cp ffmpeg_sources/ffmpeg/ffmpeg /mnt/c/HDR2VP9
+$ mkdir -p /mnt/c/HDR2VP9
+$ cp ffmpeg_sources/ffmpeg/ffmpeg /mnt/c/HDR2VP9
 ```
 
 ## How To Compress an HDR Master to VP9

@@ -77,6 +77,12 @@ https://en.wikipedia.org/wiki/Rec._2020
   <img width="977" height="647" src="images/rec2020_rec709_colors.png">
 </p>
 
+Nits are a candle power unit and we're going from 120-300 nits on all of our phones, televisions, and computer displays to 1000 nits initially for HDR10 with plans to go to 10,000 nits and beyond.
+
+<p align="center">
+  <img width="950" height="586" src="images/nits_are_candles.png">
+</p>
+
 # How To Shoot HDR Video?
 
 ## Online Video Platform HDR Requirements

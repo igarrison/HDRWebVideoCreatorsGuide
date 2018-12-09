@@ -1,0 +1,2 @@
+ffmpeg -ss 00:00:08.00 -i HDR_master.mov -vframes 1 HDR_master.png
+ffmpeg -ss 00:00:08.00 -i HDR_VP9_output.mp4 -vframes 1 HDR_VP9_output.png

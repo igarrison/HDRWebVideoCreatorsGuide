@@ -71,6 +71,10 @@ To engage in HDR content creation you will need:
 
 ## Recommended Software for HDR
 
+<p align="center">
+  <img width="978" height="409" src="images/bmd_davinci_resolve_studio.png">
+</p>
+
 1. Resolve Studio.  If you are new to HDR and haven't already been making HDR videos you probably will want Resolve Studio.  It may not be used in some of the tutorials in this guide but its the top tool for HDR content creation right with its excellent color management, HDR support, and color grading capabilities.
 
 # Compiling ffmpeg With VP9 support
@@ -168,7 +172,7 @@ Resolve and other editing suites may expose some but not all of a codec's parame
 
 * [YouTube recommends close GOP](https://support.google.com/youtube/answer/1722171?hl=en).  This is ```-flags +cgop``` in ffmpeg.
 
-* [Consider this Encoding for Youtube article which contains tips by google video infrastructure engineer Colleen Henry](http://www.streamingmedia.com/Articles/Editorial/Featured-Articles/Encoding-for-YouTube-How-to-Get-the-Best-Results-83876.aspx) which says "You can noticeably improve the quality of your video on YouTube by using a sophisticated, scene aware, denoising filter prior to uploading."  The denoise features in Resolve Studio is pretty good and we should use it (though carefully as it can reduce image details if pushed too far).
+* [Consider this Encoding for Youtube article which contains tips by google video infrastructure engineer Colleen Henry](http://www.streamingmedia.com/Articles/Editorial/Featured-Articles/Encoding-for-YouTube-How-to-Get-the-Best-Results-83876.aspx) which says "You can noticeably improve the quality of your video on YouTube by using a sophisticated, scene aware, denoising filter prior to uploading."  The denoise features in Resolve Studio is pretty good and we should use it whenever, but don't push it too far as it the reduces details in your image.
 
 ## Results
 
@@ -176,13 +180,13 @@ You can tune the encoding speed by editing ```ffmpeg_vp9_incantation.sh``` if yo
 
 Click on the images to see the example video on YouTube.  TODO: replace the images with the exact same video frame for a better side by side comparison.
 
-**BEFORE VP9 ENCODING:** Consider this the scientific control.  Its a 3.9GB 47 second MOV/DNxHR HQX HDR master straight out of Resolve Studio to Youtube and processed by YouTube's automatic HDR to SDR conversion.
+**BEFORE VP9 ENCODING:** Consider this the scientific control.  Its a 3.9GB 47 second MOV/DNxHR HQX HDR master straight out of Resolve Studio to Youtube and processed by YouTube's automatic HDR to SDR conversion.  [Link to high quality image](images/HDR_master.png).
 
-[![Before VP9 Encoding, High Quality Original Master](https://i.ytimg.com/vi/5eDVhFBoc20/maxresdefault.jpg)](https://www.youtube.com/watch?v=5eDVhFBoc20)
+[![Before VP9 Encoding, High Quality Original Master](images/HDR_master_thumbnail.png)](https://www.youtube.com/watch?v=5eDVhFBoc20)
 
- **AFTER VP9 ENCODING**: the VP9 encode it took 49 minutes to reduce this 47 second 3.9GB video to 362MB without stripping HDR metadata using the workflow recommended by Google VP9/infrastructure/HDR engineers.   This also uses YouTube's automatic HDR to SDR conversion.  WARNING: My PC is a beefy 10-core i9-7900X with 64GB RAM and this encoding is very slow but the speed is configurable!
+ **AFTER VP9 ENCODING**: the VP9 encode it took 49 minutes to reduce this 47 second 3.9GB video to 362MB without stripping HDR metadata using the workflow recommended by Google VP9/infrastructure/HDR engineers.   This also uses YouTube's automatic HDR to SDR conversion.  WARNING: My PC is a beefy 10-core i9-7900X with 64GB RAM and this encoding is very slow but the speed is configurable!  [Link to high quality image](images/HDR_VP9_output.png)
 
-[![After VP9 Encoding, Highly Compressed](https://i.ytimg.com/vi/dV4p5qQx9Kw/maxresdefault.jpg)](https://www.youtube.com/watch?v=dV4p5qQx9Kw)
+[![After VP9 Encoding, Highly Compressed](images/HDR_VP9_output_thumbnail.png)](https://www.youtube.com/watch?v=dV4p5qQx9Kw)
 
 Image quality differences can be seen especially in areas of motion (the waterfall) and there does appear to be a slight shift in color tint towards green or yellow.  I think the sharpness and quality of details is remarkably good for the static portions of the video in a side by side comparison.  Is it as high of quality as the DNxHR master?  No, but that wasn't the goal though!  We should only be using VP9 because our DNxHR masters are too large to upload to YouTube, our back is to a wall, and we need options like VP9/h265 to make some size/image quality trade-offs!  In the context of the 3.9GB -> 362MB reduction in file size while maintaining 10-bit color and HDR metadata I think the VP9 results here are still a huge win.
 

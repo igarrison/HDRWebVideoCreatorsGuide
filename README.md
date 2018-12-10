@@ -1,4 +1,6 @@
-# HDR Web Video Creators Guide
+# HDR Web Video Creator's Guide
+
+![Before VP9 Encoding, High Quality Original Master](images/hdr_web_video_creators_guide_title.png)
 
 <!-- TOC depthFrom:1 depthTo:8 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -29,9 +31,11 @@
 
 ## Introduction and Call For Quality
 
-I am Ian Garrison, a computer nerd and Youtuber.  In April of 2017 I got a Panasonic GH5 which is a mirrorless digital camera which opened the doors to the possibility of making HDR10 video.  Initially there was very little good information on HDR10 video creation and then over time new pieces of information were published and I'm
+I am Ian Garrison, a computer nerd and Youtuber.  In April of 2017 I got a Panasonic GH5, a mirrorless digital camera which opened the doors to the possibility of making HDR10 videos.  Initially there was little  information on HDR10 video creation.  Over time new pieces of information were published and I've assembled some of them here.
 
-can record 10-bit color internally, has a LOG gamma profile (V-LOG) granting an extra stop of dynamic range for a total of 12 stops on the camera.  Months later the GH5 received a firmware update which allowed recording directly in HLG (Hybrid LOG Gamma), a dynamic HDR standard that uses rec2020 color space.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I began investigating HDR10 video on YouTube.
+HDR includes many new properties which enable higher quality videos than we've ever seen, however it takes some time and effort for a spectacular image.  HDR is less than stellar if the source, grade, or workflow
+
+ without learning a few things about HDR and putting some time and thought into your grades
 
 When publishing HDR videos for the web I think us content creators should make the very best videos we can to showcase this new technology and not continue to spread bad HDR videos.  I see an unsettling number of people on YouTube making HDR tutorials where they seem to shoot video in 8-bit color, using low dynamic range sensors like smartphones, without looking at scopes or adjusting highlights at all above 100 nits SDR ranges, and even cranking contrast curves + saturation for a "HDR Look".  Let's not be that guy!  Lets aim high.  I want to deliver 10-bit color, 4k resolution, wide gamut color spaces like rec2020 over DCI-P3/REC709, and 1000 nits brightness unless the times call for even more brightness.  Let's try and make content that pushes HDR as far as our hardware/software allows to make the most visually stunning videos!
 
@@ -96,6 +100,10 @@ Nits are a candle power unit and we're going from 120-300 nits on all of our pho
   <img width="950" height="586" src="images/nits_are_candles.png">
 </p>
 
+<p align="center">
+  <img width="950" height="534" src="images/1080p_to_4k_resolution_gain.png">
+</p>
+
 # How To Shoot HDR Video?
 
 ## Online Video Platform HDR Requirements
@@ -131,6 +139,8 @@ This repo contains a full set of instructions for using the ["Windows Subsystem 
 I don't currently use Vimeo but it does have HDR support.  I'm more keen to document HDR workflows with YouTube initially but it might also be fun sometime to more thoroughly test Vimeo with HDR see what advantages it has over YouTube if any.
 
 ## Recommended Hardware for HDR
+
+can record 10-bit color internally, has a LOG gamma profile (V-LOG) granting an extra stop of dynamic range for a total of 12 stops on the camera.  Months later the GH5 received a firmware update which allowed recording directly in HLG (Hybrid LOG Gamma), a dynamic HDR standard that uses rec2020 color space.  And then again another year later the GH5 receive a firmware update allowing an All-Intraframe 400Mbps codec which could reduce some of the compression of interframe h264/h265 in the previous acquisition codec selection.  Shooting HDR on the GH5 just looked more and more attractive so I began investigating HDR10 video on YouTube.
 
 To engage in HDR content creation you will need:
 

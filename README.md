@@ -1,4 +1,4 @@
-# HDR Video Creator Guide
+# HDR Web Video Creators Guide
 
 <!-- TOC depthFrom:1 depthTo:8 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -37,6 +37,8 @@ When publishing HDR videos for the web I think us content creators should make t
 
 # What Is High Dynamic Range Video?
 
+Images with even higher dynamic ranges will be enabled through higher color bit depths + wider color gamuts + higher brightness levels + higher resolutions of HDR10 and other HDR standards.
+
 Dynamic range describes the ratio between the maximum and minimum measurable light intensities (black and white) and to have a higher dynamic range means being able to record or display more detail in the darkest and brightest parts of an image.
 
 <p align="center">
@@ -52,13 +54,24 @@ https://en.wikipedia.org/wiki/High-dynamic-range_video
 https://en.wikipedia.org/wiki/Standard-dynamic-range_video
 
 <p align="center">
-  <img width="1024" height="600" src="images/Camera_Dynamic_Range_output.png">
+  <img width="950" height="604" src="images/bad_hdr_photo1.png">
+</p>
+
+HDR Photography often involves taking multiple exposure bracketed photographs and using software to perform what's called "tone mapping" which uses the best parts of the brightest parts of the dark image exposures and the darkest parts of the brightest image exposures.  This does expand the dynamic range of an image and is a useful technique for photographers.  Instead of taking multiple exposure bracketed shots for each frame, HDR video is (ideally) using camera sensors that can capture 10+ stops of dynamic range, 10-bit LOG or RAW video, with wide gamut color spaces, and with brightness levels/HDR metadata embedded into the video files all of which  expand the tonal range in each frame.
+
+<p align="center">
+  <img width="1024" height="267" src="images/ev_exposure_range.png">
+</p>
+
+
+<p align="center">
+  <img width="941" height="600" src="images/Camera_Dynamic_Range_output.png">
 </p>
 
 Display devices like Smartphones, Televisions, and LCD Monitors also have their own dynamic range limitations.
 
 <p align="center">
-  <img width="1024" height="458" src="images/Display_Device_Dynamic_Range_output.png">
+  <img width="950" height="425" src="images/Display_Device_Dynamic_Range_output.png">
 </p>
 
 Most of the HDR standards are pushing for 10-bit color depth where 8-bit color depth has been ubiquitous.  I'm especially excited about this change as we're heading in a direction which could finally eliminate color  dithering which still plaguing common household electronics.  I'm tired of seeing photographs or videos of a blue sky with jagged lines of color banding.
@@ -74,7 +87,7 @@ https://en.wikipedia.org/wiki/Rec._709
 https://en.wikipedia.org/wiki/Rec._2020
 
 <p align="center">
-  <img width="977" height="647" src="images/rec2020_rec709_colors.png">
+  <img width="950" height="591" src="images/rec2020_rec709_colors.png">
 </p>
 
 Nits are a candle power unit and we're going from 120-300 nits on all of our phones, televisions, and computer displays to 1000 nits initially for HDR10 with plans to go to 10,000 nits and beyond.
@@ -136,11 +149,11 @@ To engage in HDR content creation you will need:
 TODO: write more detailed instructions to accompany images
 
 <p align="center">
-  <img width="449" height="1197" src="images/delivery_dnxhr_export_settings.png">
+  <img width="449" height="593" src="images/delivery_dnxhr_settings.png">
 </p>
 
 <p align="center">
-  <img width="760" height="799" src="images/preferences_user_color.png">
+  <img width="760" height="799" src="images/preferences_user_color_settings.png">
 </p>
 
 <p align="center">
@@ -148,13 +161,13 @@ TODO: write more detailed instructions to accompany images
 </p>
 
 <p align="center">
-  <img width="847" height="1287" src="images/project_settings_color_management.png">
+  <img width="847" height="1287" src="images/project_settings_color_space_settings.png">
 </p>
 
 ### SRGB Color Space in an HDR Project in Resolve Studio 15
 
 <p align="center">
-  <img width="1653" height="1479" src="images/media_management_right_click_srgb_color_space.png">
+  <img width="950" height="1197" src="images/media_management_right_click_srgb_color_space.png">
 </p>
 
 # Compiling ffmpeg With VP9 support

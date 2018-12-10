@@ -177,7 +177,7 @@ TODO: write more detailed instructions to accompany images
 ### SRGB Color Space in an HDR Project in Resolve Studio 15
 
 <p align="center">
-  <img width="950" height="1197" src="images/media_management_right_click_srgb_color_space.png">
+  <img width="950" height="1197" src="images/media_management_srgb_color_space.png">
 </p>
 
 # Compiling ffmpeg With VP9 support

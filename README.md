@@ -33,9 +33,20 @@
 
 I am Ian Garrison, a computer nerd and Youtuber.  In April of 2017 I got a Panasonic GH5, a mirrorless digital camera which opened the doors to the possibility of making HDR10 videos.  Initially there was little  information on HDR10 video creation.  Over time new pieces of information were published and I've assembled some of them here.
 
-HDR includes many new properties which enable higher quality videos than we've ever seen, however it takes some time and effort for a spectacular image.  HDR is less than stellar if the source, grade, or workflow
+HDR includes many improved attributes which enable higher quality videos than we've seen at home, however it takes some time and effort to produce a spectacular image.  With the workflow being a little more complicated there is more room for underwhelming results.  YouTube will not object if you shoot video on an old iphone 4 in 8-bit color depth, with 6 stops of dynamic range, left at 100 nits out of 1000, so long as the file contains HDR metadata.  There are multiple tutorials from people who do not even look at color scopes and do nothing else but set a contrast curve, crank up the saturation, transform color from wide to narrow back to wide again, and then export with HDR metadata and upload to YouTube.  Don't be that guy!
 
- without learning a few things about HDR and putting some time and thought into your grades
+Not everyone has an expensive ARRI Alexa camera and professional HDR monitors.  Do learn as much as you can about the components of HDR video so you can continually improve on your ability to deliver them to the best of your ability with the gear you have as it changes.  Let's try and make stunning videos that push HDR to its limits!
+
+My personal target is to shoot and deliver video that is:
+
+* 10-bit color depth or higher in a wide color gamut like rec2020
+* LOG or RAW color profiles to maximizes dynamic range
+* 4k resolution or higher
+* delivered in a high quality DNxHR HQX HDR master which can be uploaded if file sizes and network speeds are acceptable for uploads.  I can upload at around 15Mbps according to speedtest.net so I might even tolerate at 50GB file upload as it would take about 8 hours to transfer while I sleep at night.
+
+
+
+
 
 When publishing HDR videos for the web I think us content creators should make the very best videos we can to showcase this new technology and not continue to spread bad HDR videos.  I see an unsettling number of people on YouTube making HDR tutorials where they seem to shoot video in 8-bit color, using low dynamic range sensors like smartphones, without looking at scopes or adjusting highlights at all above 100 nits SDR ranges, and even cranking contrast curves + saturation for a "HDR Look".  Let's not be that guy!  Lets aim high.  I want to deliver 10-bit color, 4k resolution, wide gamut color spaces like rec2020 over DCI-P3/REC709, and 1000 nits brightness unless the times call for even more brightness.  Let's try and make content that pushes HDR as far as our hardware/software allows to make the most visually stunning videos!
 
@@ -46,7 +57,7 @@ Images with even higher dynamic ranges will be enabled through higher color bit 
 Dynamic range describes the ratio between the maximum and minimum measurable light intensities (black and white) and to have a higher dynamic range means being able to record or display more detail in the darkest and brightest parts of an image.
 
 <p align="center">
-  <img width="1024" height="370" src="images/dynamic_range_window_concept.png">
+  <img width="950" height="633" src="images/dynamic_range_window_concept.png">
 </p>
 
 Dynamic range has to do with how a camera records or a monitor/tv displays the darkest and brightest parts of an image.  the difference in brightness between the brightest parts of a scene, its darkest parts,
@@ -98,6 +109,10 @@ Nits are a candle power unit and we're going from 120-300 nits on all of our pho
 
 <p align="center">
   <img width="950" height="586" src="images/nits_are_candles.png">
+</p>
+
+<p align="center">
+  <img width="950" height="344" src="images/bright_light_sources_nits.png">
 </p>
 
 <p align="center">
@@ -350,6 +365,12 @@ A. TODO: I'm aware of a few ways to do this, but should just pick one method and
 Q. Is HDR Photography like HDR Video?
 
 A. No!
+
+---
+
+Q. I think my monitor has 10-bit color and I even think it can hit 500 nits brightness!  I can view HDR video yes?
+
+A. Maybe.  Apple ships some iMacs and Retina displays which look great for HDR on paper but don't support any HDR standards.  Dell released the U2518D which advertised HDR support while only being able to hit 350 nits brightness, only supporting 8-bit color depth, and not listing any rec2020 support.  Be wary that some HDR monitors that may be more inexpensive or aimed towards less informed consumers may fall short on their ability to display HDR video in its fullest glory.  Always check the specs!
 
 
 # Special Thanks

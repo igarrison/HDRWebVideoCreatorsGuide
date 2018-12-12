@@ -246,6 +246,8 @@ $ cp ffmpeg_sources/ffmpeg/ffmpeg /mnt/c/HDR2VP9
 
 5. Double click on runme.bat.  If all works correctly you'll see this program periodically output a log of text as its encoding.  When its done you should find a file 2pass_vp9_output.mp4 in the same directory.
 
+![zip file in this repo](images/ffmpeg_script_running.png)
+
 ## HDR Bitrates
 
 You should know the bitrate of all your cameras and footage they produce.  If you don't have this information use some media inspection tools (VLC, exiftool) or internet searches to try and determine the bitrates.  My my Panasonic GH5 shoots 150Mbps at 4k 10-bit 4:2:2 so this is my maximum upper limit on bitrate for my HDR videos.
@@ -325,6 +327,9 @@ YouTube will automatically convert SDR versions of your HDR videos uploaded to t
 
 3. Double click on the ```HDR_MetaJECTOR.bat``` script in Windows Explorer.  This will launch an MSDOS window which you can drag-and-drop both your ```HDR_VP9_output.mp4``` and any LUT files to embed into your video file prior to uploading to YouTube.  It only takes a couple seconds to run and will produce a new file with your VP9 stream in a new ```.mkv``` container.
 
+<p align="center">
+  <img width="980" height="912" src="images/metajector_capture.webm">
+</p>
 
 # FAQ
 

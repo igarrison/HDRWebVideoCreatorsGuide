@@ -327,9 +327,7 @@ YouTube will automatically convert SDR versions of your HDR videos uploaded to t
 
 3. Double click on the ```HDR_MetaJECTOR.bat``` script in Windows Explorer.  This will launch an MSDOS window which you can drag-and-drop both your ```HDR_VP9_output.mp4``` and any LUT files to embed into your video file prior to uploading to YouTube.  It only takes a couple seconds to run and will produce a new file with your VP9 stream in a new ```.mkv``` container.
 
-<p align="center">
-  <img width="980" height="912" src="images/metajector_capture.webm">
-</p>
+![After VP9 Encoding, Highly Compressed](images/metajector_capture.gif)
 
 # FAQ
 

@@ -76,7 +76,7 @@ Nits are a candle power unit and we're going from 120-300 nits on all of our pho
   <a href="https://www.youtube.com/watch?v=tO01J-M3g0U" alt="The World in HDR in 4K (ULTRA HD) by Mysterybox.us"><img src="https://i.ytimg.com/vi/tO01J-M3g0U/sddefault.jpg"></a>
 </p>
 
-Fortunately, platforms like YouTube and Vimeo will automatically convert a copy of your HDR10 video as SDR and serve that which may give some the appearance that SDR players can play HDR videos.  Some HDR formats like Hybrid Log Gamma (HLG) include the HDR to SDR transforms in the spec which would allow an SDR display to view an HDR video transformed to SDR.  If you would like to see an excellent example of a high quality YouTube HDR/SDR video by some real professionals click on this link to [The World in HDR in 4K (ULTRA HD) by Mysterybox.us](https://www.youtube.com/watch?v=tO01J-M3g0U) or on the video above.
+Fortunately, platforms like YouTube and Vimeo will automatically convert a copy of your HDR10 video as SDR and serve that which may give some the appearance that SDR players can play HDR videos.  Some HDR formats like Hybrid Log Gamma (HLG) include the HDR to SDR transforms in the spec which would allow an SDR display to view an HDR video transformed to SDR.  If you would like to see an excellent example of a high quality YouTube HDR/SDR video by some real professionals click on this link to [The World in HDR in 4K (ULTRA HD) by Mysterybox.us](https://www.youtube.com/watch?v=tO01J-M3g0U) or on the video above.  If you are on an SDR display you will not see the HDR stream and there are no side-by-side image comparisons one can share to show the real differences between HDR and SDR to viewers with an SDR display.
 
 <p align="center">
   <img width="1024" height="512" src="images/8bitvs10bitcolor.png">
@@ -113,13 +113,23 @@ Instead of taking multiple exposure bracketed shots for each frame and running t
 
 # How To Shoot HDR Video?
 
+## HDR Camera Specifications
+
+| Camera Name | 10-bit color depth or higher | LOG or RAW color profile | 8+ stops of DR beats SDR, 10-13 stops are fine for HDR10 | 1080p - 4k resolution |
+|-------------|-----------|--------------------------|---------------|------------|
+| Panasonic GH5 | 10-bit | V-LOG and HLG | 12 stops | 4k |
+| Blackmagic Pocket Cinema Camera 4k | 12-bit | cDNG and (soon) BRAW | 12+ stops  | 4k |
+| Sony PXW-Z100 | 10-bit | Cinematone2 | 10 stops | 1080p |
+
+A camera used to shoot HDR should ideally have some of the features above.  This is not intended to be a comprehensive list of all cameras.
+
+There probably is also a list of "nice to haves" that might improve an HDR grade like higher than 4:2:2 chroma-subsampling and less highly compressed acquisition codecs.  On the GH5 for example most video is recorded in h264 or h265 but a firmware update was added to allowed recording in a 400Mbps All-I (interframe) long GOP codec.  There also is the option of attaching external recorders via HDMI to record in codecs not supported by the camera itself.  Codecs like ProRes/DNxHD (intermediary/mezzanine codecs) eat up a lot of space but are great high quality editing codecs that aren't as highly compressed as h264/h265.  Even more attractive is the Blackmagic RAW (BRAW) codec the BMPCC4K is supposed to be getting in a coming firmware update.
+
 ## Online Video Platform HDR Requirements
 
 **It is my intent to attempt to upload my 4k 10-bit HDR MOV/DNxHR HQX masters right out of Resolve Studio whenever possible for maximum image quality** so long as the video is under say 12GB in size.  The bitrate of DNxHR profiles is fixed for a given resolution and framerate and at my preferred resolution of 4k and framerate of 29.976 frames per second I made a 47 second video which with DNxHR HQX and HDR metadata landed at 3.9GB in size.  If I multiply 3.9GB by 34 (minutes) we get 132GB which would exceed YouTube's maximum file size limit of 128GB.  So its probably a good idea to have a solution ready on how to re-encode our HDR10 masters to smaller sizes for cases when we go for longer videos and larger resolutions like 8K without stripping HDR metadata.
 
 ### YouTube
-
-
 
 We need to workaround Resolve Studio not having a web deliverable codec with HDR metadata support on Windows or Linux.  This likely means either h265 or VP9.
 

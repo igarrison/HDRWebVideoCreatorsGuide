@@ -44,70 +44,72 @@ With my Panasonic GH5 camera my goal is to have the option to shoot and deliver 
 
 # What Is High Dynamic Range Video?
 
-The concept of "dynamic range" describes the ratio between the maximum and minimum measurable light intensities (black and white).  To have a higher dynamic range means being able to record or display more detail in the darkest and brightest parts of an image.  Consider the image below of the window and imagine how you might solve the problem of exposing the bright clouds outside without blowing them out while also getting good exposure inside the dark house for a painting on the inside wall next to the window for example.  This isn't a "low light" problem needing faster lenses and larger sensors, but rather 
+The concept of "dynamic range" for video describes the ratio between the maximum and minimum measurable light intensities (black and white).  To have a higher dynamic range means being able to record or display more detail in the darkest and brightest parts of an image.
 
 <p align="center">
   <img width="950" height="633" src="images/dynamic_range_window_concept.png">
 </p>
 
-Dynamic range has to do with how a camera records or a monitor/tv displays the darkest and brightest parts of an image.  the difference in brightness between the brightest parts of a scene, its darkest parts,
-
-"The dynamic range that can be perceived by the human eye in a single image is around 14 stops. SDR video with a conventional gamma curve and a bit depth of 8-bits per sample has a dynamic range of about 6 stops. Professional SDR video with a bit depth of 10-bits per sample has a dynamic range of about 10 stops.  When HDR content is displayed on a 2,000 cd/m2 display with a bit depth of 10-bits per sample it has a dynamic range of 200,000:1 or 17.6 stops, a range not offered by the majority of current displays.""
-
-https://en.wikipedia.org/wiki/High-dynamic-range_video
-
-https://en.wikipedia.org/wiki/Standard-dynamic-range_video
-
-<p align="center">
-  <img width="950" height="604" src="images/bad_hdr_photo1.png">
-</p>
-
-HDR Photography often involves taking multiple exposure bracketed photographs and using software to perform what's called "tone mapping" which uses the best parts of the brightest parts of the dark image exposures and the darkest parts of the brightest image exposures.  This does expand the dynamic range of an image and is a useful technique for photographers.  Instead of taking multiple exposure bracketed shots for each frame, HDR video is (ideally) using camera sensors that can capture 10+ stops of dynamic range, 10-bit LOG or RAW video, with wide gamut color spaces, and with brightness levels/HDR metadata embedded into the video files all of which  expand the tonal range in each frame.
-
-<p align="center">
-  <img width="1024" height="267" src="images/ev_exposure_range.png">
-</p>
-
+Consider the image above of the window and imagine how you might solve the problem of exposing the bright clouds outside without blowing them out while also getting good exposure inside the dark house for a painting on the inside wall next to the window for example.  In an SDR world you choose to expose the clouds and silhouette the room OR you expose the room and let the window blow out.  With HDR you can store and display more dynamic range so there is less of an extreme tradeoff on keeping your highlights.
 
 <p align="center">
   <img width="941" height="600" src="images/Camera_Dynamic_Range_output.png">
 </p>
 
-Display devices like Smartphones, Televisions, and LCD Monitors also have their own dynamic range limitations.
+> "The dynamic range that can be perceived by the human eye in a single image is around 14 stops. [SDR video](https://en.wikipedia.org/wiki/Standard-dynamic-range_video) with a conventional gamma curve and a bit depth of 8-bits per sample has a dynamic range of about 6 stops. Professional SDR video with a bit depth of 10-bits per sample has a dynamic range of about 10 stops.  When HDR content is displayed on a 2,000 cd/m2 display with a bit depth of 10-bits per sample it has a dynamic range of 200,000:1 or 17.6 stops, a range not offered by the majority of current displays." -[Wikipedia article on High Dynamic Range Video](https://en.wikipedia.org/wiki/High-dynamic-range_video)
 
 <p align="center">
   <img width="950" height="425" src="images/Display_Device_Dynamic_Range_output.png">
 </p>
 
-Most of the HDR standards are pushing for 10-bit color depth where 8-bit color depth has been ubiquitous.  I'm especially excited about this change as we're heading in a direction which could finally eliminate color  dithering which still plaguing common household electronics.  I'm tired of seeing photographs or videos of a blue sky with jagged lines of color banding.
-
-<p align="center">
-  <img width="1024" height="512" src="images/8bitvs10bitcolor.png">
-</p>
-
-Also in addition to higher color depth (1024 channels per color instead of 256) HDR also departs from the narrow color gamuts like rec709 and SRGB for wide color gamuts like rec2020.  
-
-https://en.wikipedia.org/wiki/Rec._709
-
-https://en.wikipedia.org/wiki/Rec._2020
-
-<p align="center">
-  <img width="950" height="591" src="images/rec2020_rec709_colors.png">
-</p>
-
 Nits are a candle power unit and we're going from 120-300 nits on all of our phones, televisions, and computer displays to 1000 nits initially for HDR10 with plans to go to 10,000 nits and beyond.
-
-<p align="center">
-  <img width="950" height="586" src="images/nits_are_candles.png">
-</p>
 
 <p align="center">
   <img width="950" height="344" src="images/bright_light_sources_nits.png">
 </p>
 
+**YOU PROBABLY CANNOT SEE HDR (SPECIAL HARDWARE REQUIRED)** Most of today's display devices like Smartphones, Televisions, and LCD Monitors use SDR.  Those who work with the most high end professional graphics might have a 10-bit display on their workstation however they likely don't meet the 1000 nits brightness required for the current common standard HDR10.  If you try and display an HDR video on an SDR display it will likely look de-saturated with a flat low-contrast look like LOG footage.  Televisions manufactured since 2016 might have HDR10 support especially if the cost was over $2000 to $3000.  The latest IPhones and Android phones might have HDR support.  HDR computer displays have seen the lowest amount of available displays and general adoption but I expect to see more coming to market at CES in January of 2019.
+
+<!-- [![The World in HDR in 4K (ULTRA HD) by Mysterybox.us](https://i.ytimg.com/vi/tO01J-M3g0U/sddefault.jpg)](https://www.youtube.com/watch?v=tO01J-M3g0U). -->
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=tO01J-M3g0U" alt="The World in HDR in 4K (ULTRA HD) by Mysterybox.us"><img src="https://i.ytimg.com/vi/tO01J-M3g0U/sddefault.jpg"></a>
+</p>
+
+Fortunately, platforms like YouTube and Vimeo will automatically convert a copy of your HDR10 video as SDR and serve that which may give some the appearance that SDR players can play HDR videos.  Some HDR formats like Hybrid Log Gamma (HLG) include the HDR to SDR transforms in the spec which would allow an SDR display to view an HDR video transformed to SDR.  If you would like to see an excellent example of a high quality YouTube HDR/SDR video by some real professionals click on this link to [The World in HDR in 4K (ULTRA HD) by Mysterybox.us](https://www.youtube.com/watch?v=tO01J-M3g0U) or on the video above.
+
+<p align="center">
+  <img width="1024" height="512" src="images/8bitvs10bitcolor.png">
+</p>
+
+Most of the HDR standards are pushing for 10-bit color depth where 8-bit color depth has been ubiquitous.  As you can see this takes us from 16.7 possible colors in any common SDR video to at least a billion colors or more (Dolby Vision is 12-bit color depth!).  Much more subtle gradations of color can be displayed.  I am especially excited about this change as we're heading in a direction which could finally eliminate color dithering and banding artifacts which have been a plague on common electronics everywhere since the dawn of computing.  I'm tired of seeing media of a blue sky tainted by the jagged lines of color banding.
+
+<p align="center">
+  <img width="950" height="591" src="images/rec2020_rec709_colors.png">
+</p>
+
+HDR also departs from the narrow color gamuts like [rec709](https://en.wikipedia.org/wiki/Rec._709) and [SRGB](https://en.wikipedia.org/wiki/SRGB) for wider color gamuts like [rec2020](https://en.wikipedia.org/wiki/Rec._2020) and [rec2100](https://en.wikipedia.org/wiki/Rec._2100).  Many displays may only have support a percentage of rec2020's full color spectrum in the same way that you'll often see technical spec listings like "%99 of SRGB space support".  Over time as rec2020 displays improve we're going to see color quality improve as we have a new standard everyone can use to get the color in our videos closer to what the sensitive human eye can see.
+
 <p align="center">
   <img width="950" height="534" src="images/1080p_to_4k_resolution_gain.png">
 </p>
+
+4K for HDR is not a strict requirement for platforms like YouTube and Vimeo, however it is part of specifications like "Ultra HD Premium".  Viewers on smartphones with HDR displays are probably under 4k resolution however many of the new HDR televisions sold will be 4k.
+
+<p align="center">
+  <img width="950" height="604" src="images/bad_hdr_photo1.png">
+</p>
+
+The way HDR photography works involves taking multiple exposure bracketed photographs and using software to perform what's called "tone mapping" which combines the best parts of the brightest parts of the dark image exposures and the darkest parts of the brightest image exposures.  This does expand the dynamic range of an image and is a useful technique for photographers, but is a different beast than HDR video.
+
+Instead of taking multiple exposure bracketed shots for each frame and running tone mapping in software to display them on SDR displays using regular image file formats, the HDR video standards prescribe a color space/gamma/color depth and brightness attributes to store as well as a new display technology of monitors/televisions/smartphone screens/etc to display that particular kind of video file.
+
+<p align="center">
+  <img width="1024" height="267" src="images/ev_exposure_range.png">
+</p>
+
+**NOT EVERY SCENE HAS A HIGH DYNAMIC RANGE!**  Imagine shooting a video about a grey piece of paper laying on a concrete floor in a well lit room.  5-6 stops of dynamic range might be all that is needed to capture the entire tonal range of a close-up shot of the paper on the concrete floor.  Not every shot will be looking out of a dimly lit cave into a brightly lit landscape.  Until I started experimenting with HDR it didn't occur to me to seek out scenes that contain a higher dynamic range.
+
 
 # How To Shoot HDR Video?
 
